@@ -1,0 +1,29 @@
+<resources>
+
+    <string name="app_name">Chatting Android</string>
+
+    <!-- Login Fragment -->
+    <string name="admin">admin</string>
+    <string name="bob">bob</string>
+    <string name="andrew">andrew</string>
+    <string name="john">john</string>
+    <string name="max">max</string>
+
+    <!-- Profile Fragment -->
+    <string name="greeting">Hello %s</string>
+    <string name="chat_with_admin">Chat with admin</string>
+    <string name="chat_with_bob">Chat with bob</string>
+    <string name="chat_with_andrew">Chat with andrew</string>
+    <string name="chat_with_john">Chat with john</string>
+    <string name="chat_with_max">Chat with max</string>
+
+    <!-- Chat Fragment -->
+    <string name="chatting_with">%s chatting with %s</string>
+    <string name="presence_type">Presence Type: </string>
+    <string name="presence_mode">Presence Mode: </string>
+    <string name="chat_state">Chat State: </string>
+    <string name="chatList">Chat List: </string>
+    <string name="editTextMessageHint">Type your message here</string>
+    <string name="send">Send</string>
+
+</resources>

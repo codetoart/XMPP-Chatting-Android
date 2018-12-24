@@ -1,0 +1,65 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion versions.androidCompileSdk
+    defaultConfig {
+        applicationId "com.codetoart.android.xmpp.chatting"
+        minSdkVersion versions.androidMinSdk
+        targetSdkVersion versions.androidTargetSdk
+        versionCode versions.projectVersionCode
+        versionName versions.projectVersionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        lintConfig file("lint.xml")
+    }
+
+    Properties properties = new Properties()
+    properties.load(new FileInputStream(rootProject.file("local.properties")))
+
+    buildTypes.each {
+        it.buildConfigField("String", "XMPP_SERVER_HOST", properties["XMPP_SERVER_HOST"])
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+    implementation "androidx.appcompat:appcompat:$versions.appcompat"
+    implementation "androidx.constraintlayout:constraintlayout:$versions.constraintLayout"
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation "androidx.test.ext:junit:1.1.0"
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+
+    implementation "androidx.multidex:multidex:2.0.1"
+
+    implementation "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle"
+
+    implementation "org.igniterealtime.smack:smack-android-extensions:$versions.smack"
+    implementation "org.igniterealtime.smack:smack-tcp:$versions.smack"
+    // https://github.com/igniterealtime/Smack/commit/0332fa54d10ff357e40ebd979364ca4da6181fb8
+    // TODO -> Replace snapshot version of smack-experimental with stable after above commit gets released
+    implementation "org.igniterealtime.smack:smack-experimental:$versions.smackExperimentalSnapshot"
+
+    implementation "com.google.android.material:material:$versions.material"
+
+    // Rx modules
+    implementation "io.reactivex.rxjava2:rxjava:$versions.rxJava"
+    implementation "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid"
+}
+
+configurations {
+    all*.exclude group: 'xpp3', module: 'xpp3'
+}
