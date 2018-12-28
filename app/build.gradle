@@ -31,6 +31,7 @@ android {
 
     buildTypes.each {
         it.buildConfigField("String", "XMPP_SERVER_HOST", properties["XMPP_SERVER_HOST"])
+        it.buildConfigField("String", "XMPP_SERVICE_DOMAIN", properties["XMPP_SERVICE_DOMAIN"])
     }
 }
 

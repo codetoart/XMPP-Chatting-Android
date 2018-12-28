@@ -19,7 +19,7 @@ class LoginViewModel(
     private var loginDisposable: Disposable? = null
     val liveLoginState = MutableLiveData<LoginState>()
 
-    fun attemptLogin(config: XMPPTCPConnectionConfiguration) {
+    fun attemptLogin(config: XMPPTCPConnectionConfiguration.Builder) {
         Log.v(LOG_TAG, "-> attemptLogin")
 
         liveLoginState.value = LoginState(LoginState.Status.AUTHENTICATING)

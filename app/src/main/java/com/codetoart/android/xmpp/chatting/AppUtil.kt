@@ -15,16 +15,5 @@ class AppUtil {
             val domainBareJid = configuration.xmppServiceDomain
             return JidCreate.bareFrom(localpart, domainBareJid)
         }
-
-        fun getByUsername(username: String): XMPPTCPConnectionConfiguration {
-            return when (username) {
-                AppConstants.adminConfig.username -> AppConstants.adminConfig
-                AppConstants.bobConfig.username -> AppConstants.bobConfig
-                AppConstants.andrewConfig.username -> AppConstants.andrewConfig
-                AppConstants.johnConfig.username -> AppConstants.johnConfig
-                AppConstants.maxConfig.username -> AppConstants.maxConfig
-                else -> throw Exception("-> Unknown username: $username")
-            }
-        }
     }
 }

@@ -4,8 +4,9 @@ This project is based on the [XMPP](https://xmpp.org/) (eXtensible Messaging and
 
 ## Getting Started
 
-Add XMPP Server Host address in local.properties like below -
+Add following configuration in local.properties like below -
 
 ```groovy
-XMPP_SERVER_HOST="xxx.xxx.xxx.xxx"
+XMPP_SERVER_HOST="Server Host IP Address or Name"
+XMPP_SERVICE_DOMAIN="Service domain name i.e. whatever after '@' symbol"
 ```

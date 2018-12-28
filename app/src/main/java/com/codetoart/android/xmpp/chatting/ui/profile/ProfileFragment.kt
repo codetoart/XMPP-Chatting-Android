@@ -17,7 +17,6 @@ import com.codetoart.android.xmpp.chatting.SmackConnection
 import com.codetoart.android.xmpp.chatting.ui.chat.ChatActivity
 import com.codetoart.android.xmpp.chatting.ui.chat.ChatFragment
 import kotlinx.android.synthetic.main.profile_fragment.*
-import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration
 
 class ProfileFragment : Fragment() {
 
@@ -33,11 +32,11 @@ class ProfileFragment : Fragment() {
         Log.v(LOG_TAG, "-> onClick -> chatWith")
 
         when (view.id) {
-            R.id.buttonChatAdmin -> startActivityFor(AppConstants.adminConfig)
-            R.id.buttonChatBob -> startActivityFor(AppConstants.bobConfig)
-            R.id.buttonChatAndrew -> startActivityFor(AppConstants.andrewConfig)
-            R.id.buttonChatJohn -> startActivityFor(AppConstants.johnConfig)
-            R.id.buttonChatMax -> startActivityFor(AppConstants.maxConfig)
+            R.id.buttonChatAdmin -> startActivityFor(AppConstants.adminUsername)
+            R.id.buttonChatBob -> startActivityFor(AppConstants.bobUsername)
+            R.id.buttonChatAndrew -> startActivityFor(AppConstants.andrewUsername)
+            R.id.buttonChatJohn -> startActivityFor(AppConstants.johnUsername)
+            R.id.buttonChatMax -> startActivityFor(AppConstants.maxUsername)
         }
     }
 
@@ -70,12 +69,10 @@ class ProfileFragment : Fragment() {
             viewModel.init()
     }
 
-    private fun startActivityFor(configuration: XMPPTCPConnectionConfiguration) {
+    private fun startActivityFor(receiverUsername: String) {
         Log.v(LOG_TAG, "-> startActivityFor")
 
         val senderUsername = smackConnection.connection.configuration.username.toString()
-        val receiverUsername = configuration.username.toString()
-
         val intent = Intent(context, ChatActivity::class.java)
         intent.putExtra(ChatFragment.BUNDLE_SENDER_USERNAME, senderUsername)
         intent.putExtra(ChatFragment.BUNDLE_RECEIVER_USERNAME, receiverUsername)
@@ -86,11 +83,11 @@ class ProfileFragment : Fragment() {
         Log.v(LOG_TAG, "-> disableButtonChatWith")
 
         when (username) {
-            AppConstants.adminConfig.username -> buttonChatAdmin.isEnabled = false
-            AppConstants.bobConfig.username -> buttonChatBob.isEnabled = false
-            AppConstants.andrewConfig.username -> buttonChatAndrew.isEnabled = false
-            AppConstants.johnConfig.username -> buttonChatJohn.isEnabled = false
-            AppConstants.maxConfig.username -> buttonChatMax.isEnabled = false
+            AppConstants.adminUsername -> buttonChatAdmin.isEnabled = false
+            AppConstants.bobUsername -> buttonChatBob.isEnabled = false
+            AppConstants.andrewUsername -> buttonChatAndrew.isEnabled = false
+            AppConstants.johnUsername -> buttonChatJohn.isEnabled = false
+            AppConstants.maxUsername -> buttonChatMax.isEnabled = false
         }
     }
 

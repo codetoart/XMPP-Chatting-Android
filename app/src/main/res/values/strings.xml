@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">Chatting Android</string>
+    <string name="app_name">XMPP Chatting Android</string>
 
     <!-- Login Fragment -->
     <string name="admin">admin</string>
@@ -19,10 +19,10 @@
 
     <!-- Chat Fragment -->
     <string name="chatting_with">%s chatting with %s</string>
-    <string name="presence_type">Presence Type: </string>
-    <string name="presence_mode">Presence Mode: </string>
-    <string name="chat_state">Chat State: </string>
-    <string name="chatList">Chat List: </string>
+    <string name="presence_type">Presence Type:</string>
+    <string name="presence_mode">Presence Mode:</string>
+    <string name="chat_state">Chat State:</string>
+    <string name="chatList">Chat List:</string>
     <string name="editTextMessageHint">Type your message here</string>
     <string name="send">Send</string>
 

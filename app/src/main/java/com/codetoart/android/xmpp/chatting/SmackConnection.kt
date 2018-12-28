@@ -7,6 +7,7 @@ import org.jivesoftware.smack.roster.Roster
 import org.jivesoftware.smack.tcp.XMPPTCPConnection
 import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration
 import java.io.Serializable
+import java.net.InetAddress
 
 class SmackConnection : Serializable {
 
@@ -24,10 +25,13 @@ class SmackConnection : Serializable {
 
     lateinit var connection: AbstractXMPPConnection
 
-    fun attemptLogin(configuration: XMPPTCPConnectionConfiguration): Single<AbstractXMPPConnection> {
+    fun attemptLogin(configBuilder: XMPPTCPConnectionConfiguration.Builder): Single<AbstractXMPPConnection> {
         Log.v(LOG_TAG, "-> attemptLogin")
 
         return Single.create<AbstractXMPPConnection> { source ->
+
+            val hostAddress: InetAddress = InetAddress.getByName(BuildConfig.XMPP_SERVER_HOST)
+            val configuration = configBuilder.setHostAddress(hostAddress).build()
             val connection = XMPPTCPConnection(configuration)
 
             // TODO -> Add try catch block
@@ -61,6 +65,8 @@ class SmackConnection : Serializable {
     fun attemptLogOff() {
         Log.v(LOG_TAG, "-> attemptLogOff")
 
-        connection.disconnect()
+        AppExecutors.get().networkExecutor.execute {
+            connection.disconnect()
+        }
     }
 }

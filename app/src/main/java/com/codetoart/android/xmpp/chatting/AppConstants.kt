@@ -3,46 +3,36 @@ package com.codetoart.android.xmpp.chatting
 import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration
 import org.jxmpp.jid.DomainBareJid
 import org.jxmpp.jid.impl.JidCreate
-import java.net.InetAddress
 
 object AppConstants {
 
-    val hostAddress: InetAddress = InetAddress.getByName(BuildConfig.XMPP_SERVER_HOST)
     const val port = 5222
-    val xmppServiceDomain: DomainBareJid = JidCreate.domainBareFrom("localhost")
+    val xmppServiceDomain: DomainBareJid = JidCreate.domainBareFrom(BuildConfig.XMPP_SERVICE_DOMAIN)
 
-    val adminConfig: XMPPTCPConnectionConfiguration = XMPPTCPConnectionConfiguration.builder()
-        .setHostAddress(hostAddress)
-        .setPort(port)
-        .setUsernameAndPassword("admin", "password")
-        .setXmppDomain(xmppServiceDomain)
-        .build()
+    fun getBaseConfig(): XMPPTCPConnectionConfiguration.Builder {
+        return XMPPTCPConnectionConfiguration.builder()
+            .setPort(port)
+            .setXmppDomain(xmppServiceDomain)
+    }
 
-    val bobConfig: XMPPTCPConnectionConfiguration = XMPPTCPConnectionConfiguration.builder()
-        .setHostAddress(hostAddress)
-        .setPort(port)
-        .setUsernameAndPassword("bob", "password")
-        .setXmppDomain(xmppServiceDomain)
-        .build()
+    const val adminUsername = "admin"
+    const val bobUsername = "bob"
+    const val andrewUsername = "andrew"
+    const val johnUsername = "john"
+    const val maxUsername = "max"
 
-    val andrewConfig: XMPPTCPConnectionConfiguration = XMPPTCPConnectionConfiguration.builder()
-        .setHostAddress(hostAddress)
-        .setPort(port)
-        .setUsernameAndPassword("andrew", "password")
-        .setXmppDomain(xmppServiceDomain)
-        .build()
+    val adminConfig: XMPPTCPConnectionConfiguration.Builder =
+        getBaseConfig().setUsernameAndPassword(adminUsername, "password")
 
-    val johnConfig: XMPPTCPConnectionConfiguration = XMPPTCPConnectionConfiguration.builder()
-        .setHostAddress(hostAddress)
-        .setPort(port)
-        .setUsernameAndPassword("john", "password")
-        .setXmppDomain(xmppServiceDomain)
-        .build()
+    val bobConfig: XMPPTCPConnectionConfiguration.Builder =
+        getBaseConfig().setUsernameAndPassword(bobUsername, "password")
 
-    val maxConfig: XMPPTCPConnectionConfiguration = XMPPTCPConnectionConfiguration.builder()
-        .setHostAddress(hostAddress)
-        .setPort(port)
-        .setUsernameAndPassword("max", "password")
-        .setXmppDomain(xmppServiceDomain)
-        .build()
+    val andrewConfig: XMPPTCPConnectionConfiguration.Builder =
+        getBaseConfig().setUsernameAndPassword(andrewUsername, "password")
+
+    val johnConfig: XMPPTCPConnectionConfiguration.Builder =
+        getBaseConfig().setUsernameAndPassword(johnUsername, "password")
+
+    val maxConfig: XMPPTCPConnectionConfiguration.Builder =
+        getBaseConfig().setUsernameAndPassword(maxUsername, "password")
 }
